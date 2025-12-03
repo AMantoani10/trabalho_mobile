@@ -35,3 +35,18 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+
+
+ion-title{
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+ion-content{
+    --background: linear-gradient(135deg, #132757, #6e737c);
+}
+
+
+ion-toolbar {
+  --background: linear-gradient(135deg, #132757, #6e737c);
+}

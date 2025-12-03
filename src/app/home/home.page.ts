@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonList, IonInput } from '@ionic/angular/standalone';
-import { routes } from '../app.routes';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,12 +13,6 @@ export class HomePage {
 
   cadastro(){
     this.router.navigate(["/cadastro"]);
-  }
-  editar(){
-    this.router.navigate(["/edicao"]);
-  }
-  excluir(){
-    this.router.navigate(["/exclusao"]);
   }
   visualizar(){
     this.router.navigate(["/visualizacao"]);

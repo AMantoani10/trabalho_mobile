@@ -11,7 +11,7 @@
 #container strong {
   font-size: 20px;
   line-height: 26px;
-}
+} 
 
 #container p {
   font-size: 16px;
@@ -24,4 +24,13 @@
 
 #container a {
   text-decoration: none;
+}
+
+ion-button{
+  width: 48%;
+  --background: white ;
+}
+.div-one{
+  display: flex;
+  justify-content: center;
 }

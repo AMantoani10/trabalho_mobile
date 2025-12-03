@@ -1,0 +1,26 @@
+.titulo-absoluto{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    text-align: center;
+    pointer-events: none; /* opcional: evita interferência em clique */
+}
+
+ion-button{
+  --background: white ;
+}
+
+.inputs{
+    margin: auto;
+    width: 90%;
+}
+
+ion-input {
+  --background: rgba(255, 255, 255, 0.1); /* cor do fundo */
+  --padding-start: 12px;
+  --padding-end: 12px;
+
+  border-radius: 12px; /* borda arredondada */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* opcional */
+}
