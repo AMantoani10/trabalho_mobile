@@ -4,7 +4,7 @@
     transform: translateX(-50%);
     width: auto;
     text-align: center;
-    pointer-events: none; /* opcional: evita interferência em clique */
+    pointer-events: none; 
 }
 
 .btmeditar{
@@ -20,6 +20,6 @@
   color: rgb(1, 1, 1);
 }
 .btmcancelar{
-  --background:rgb(165, 46, 46);  
+  --background:rgb(165, 46, 46);
   color: rgb(1, 1, 1);
 }

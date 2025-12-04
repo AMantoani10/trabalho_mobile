@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-// IMPORTANTE: Importar IonicModule e os Controllers
+
 import {
   IonicModule,
   NavController,
@@ -16,33 +16,33 @@ import { ApiService } from 'src/app/services/api';
   templateUrl: './detalhes.page.html',
   styleUrls: ['./detalhes.page.scss'],
   standalone: true,
-  // IMPORTANTE: IonicModule precisa estar aqui para o HTML funcionar
+
   imports: [IonicModule, CommonModule, FormsModule],
 })
 export class DetalhesPage implements OnInit {
-  pessoa: any = null; // Guarda os dados da pessoa
-  emEdicao: boolean = false; // Controla se mostra input ou texto
-  idPessoa: string = ''; // Guarda o ID da URL
+  pessoa: any = null;
+  emEdicao: boolean = false;
+  idPessoa: string = '';
 
   constructor(
-    private route: ActivatedRoute, // Para ler a URL
-    private apiService: ApiService, // Para falar com o Python
-    private navCtrl: NavController, // Para voltar pra lista
-    private alertController: AlertController, // Para perguntar "Tem certeza?"
-    private toastController: ToastController // Para avisar "Salvo!"
+    private route: ActivatedRoute,
+    private apiService: ApiService,
+    private navCtrl: NavController,
+    private alertController: AlertController,
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {
-    // 1. Pega o ID que veio na URL
+
     this.idPessoa = this.route.snapshot.paramMap.get('id') ?? '';
 
-    // 2. Se tiver ID, busca os dados
+
     if (this.idPessoa) {
       this.carregarPessoa();
     }
   }
 
-  // Busca os dados no Python
+
   carregarPessoa() {
     this.apiService.buscarPorId(this.idPessoa).subscribe({
       next: (dados) => {
@@ -52,41 +52,39 @@ export class DetalhesPage implements OnInit {
     });
   }
 
-  // --- FUNÇÕES DOS BOTÕES ---
 
-  // Botão "Editar" / "Cancelar"
   alternarEdicao() {
     this.emEdicao = !this.emEdicao;
-    // Se cancelou, recarrega os dados originais
+
     if (!this.emEdicao) {
       this.carregarPessoa();
     }
   }
 
   emailValido(email: string): boolean {
-    // Regex simples para email: algo@algo.algo
+
     const padrao = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return padrao.test(email);
   }
 
-  // Botão "Salvar"
+
   salvar() {
-    // --- VALIDAÇÃO 1: Campos Vazios ---
+
     if (!this.pessoa.nome || !this.pessoa.email) {
       this.mostrarAlerta('Atenção', 'Nome e Email são obrigatórios!');
-      return; // O return PARALISA a função aqui. Não envia nada.
+      return;
     }
 
-    // --- VALIDAÇÃO 2: Formato do Email ---
+
     if (!this.emailValido(this.pessoa.email)) {
       this.mostrarAlerta(
         'Email Inválido',
         'Por favor, digite um email correto (ex: nome@teste.com)'
       );
-      return; // Para tudo aqui também
+      return;
     }
 
-    // --- SE PASSOU PELAS VALIDAÇÕES, SEGUE O BAILE ---
+
     this.apiService.atualizar(this.idPessoa, this.pessoa).subscribe({
       next: () => {
         this.mostrarToast('Dados atualizados com sucesso!');
@@ -99,7 +97,7 @@ export class DetalhesPage implements OnInit {
     });
   }
 
-  // Botão "Excluir" (Abre a confirmação)
+
   async confirmarExclusao() {
     const alert = await this.alertController.create({
       header: 'Cuidado!',
@@ -110,25 +108,25 @@ export class DetalhesPage implements OnInit {
           text: 'Sim, Apagar',
           handler: () => {
             this.deletar();
-          }, // Se disser sim, deleta
+          },
         },
       ],
     });
     await alert.present();
   }
 
-  // A exclusão real
+
   deletar() {
     this.apiService.excluir(this.idPessoa).subscribe({
       next: () => {
         this.mostrarToast('Pessoa excluída!');
-        this.navCtrl.navigateBack('/visualizacao'); // Volta pra lista
+        this.navCtrl.navigateBack('/visualizacao');
       },
       error: (erro) => console.error(erro),
     });
   }
 
-  // Auxiliar para mostrar mensagem
+
   async mostrarToast(msg: string) {
     const toast = await this.toastController.create({
       message: msg,
@@ -142,7 +140,7 @@ export class DetalhesPage implements OnInit {
     const alert = await this.alertController.create({
       header: titulo,
       message: mensagem,
-      buttons: ['OK'], // Botão simples só para fechar
+      buttons: ['OK'], 
     });
     await alert.present();
   }

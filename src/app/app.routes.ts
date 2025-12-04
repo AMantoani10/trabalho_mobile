@@ -19,10 +19,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/detalhes/detalhes.page').then( m => m.DetalhesPage)
   },
   {
-    path: 'exclusao',
-    loadComponent: () => import('./pages/exclusao/exclusao.page').then( m => m.ExclusaoPage)
-  },
-  {
     path: 'visualizacao',
     loadComponent: () => import('./pages/visualizacao/visualizacao.page').then( m => m.VisualizacaoPage)
   },

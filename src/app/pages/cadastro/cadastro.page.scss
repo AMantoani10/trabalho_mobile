@@ -4,7 +4,7 @@
     transform: translateX(-50%);
     width: auto;
     text-align: center;
-    pointer-events: none; /* opcional: evita interferência em clique */
+    pointer-events: none; 
 }
 
 ion-button{
@@ -17,10 +17,10 @@ ion-button{
 }
 
 ion-input {
-  --background: rgba(255, 255, 255, 0.1); /* cor do fundo */
+  --background: rgba(255, 255, 255, 0.1);
   --padding-start: 12px;
   --padding-end: 12px;
 
-  border-radius: 12px; /* borda arredondada */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* opcional */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }

@@ -34,7 +34,7 @@ export class CadastroPage implements OnInit {
   ngOnInit() {
   }
 
-  // --- FUNÇÕES AUXILIARES ---
+
 
   emailValido(email: string): boolean {
     const padrao = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -60,29 +60,28 @@ export class CadastroPage implements OnInit {
     toast.present();
   }
 
-  // --- AÇÃO PRINCIPAL ---
+
 
   enviarDados() {
-    // 1. VALIDAÇÃO RIGOROSA: Verifica TODOS os campos
-    // Se faltar qualquer um deles, entra no IF e para tudo.
+
     if (!this.nome || !this.sobrenome || !this.telefone || !this.email || !this.cidade || !this.idade) {
       this.mostrarAlerta('Campos Vazios', 'Por favor, preencha TODAS as informações da pessoa.');
       return;
     }
 
-    // 2. Valida se a Idade faz sentido (opcional, mas bom)
+
     if (this.idade <= 0) {
       this.mostrarAlerta('Idade Inválida', 'A idade precisa ser maior que zero.');
       return;
     }
 
-    // 3. Valida Email
+
     if (!this.emailValido(this.email)) {
       this.mostrarAlerta('Email Inválido', 'Digite um email correto (ex: teste@gmail.com)');
       return;
     }
 
-    // --- SE PASSOU POR TUDO, ENVIA ---
+
     const dadosParaEnviar = {
       nome: this.nome,
       sobrenome: this.sobrenome,
@@ -96,7 +95,7 @@ export class CadastroPage implements OnInit {
       next: () => {
         this.mostrarToast("Pessoa cadastrada com sucesso!");
 
-        // Limpa tudo
+        
         this.nome = "";
         this.sobrenome = "";
         this.idade = 0;
