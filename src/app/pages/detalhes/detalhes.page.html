@@ -1,0 +1,109 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/visualizacao"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="titulo-absoluto">Detalhes da Pessoa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  @if (pessoa) {
+
+    <ion-list>
+
+      <ion-item>
+        <ion-label position="stacked">Nome</ion-label>
+        @if (emEdicao) {
+          <ion-input [(ngModel)]="pessoa.nome"></ion-input>
+        } @else {
+          <p>{{ pessoa.nome }}</p>
+        }
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Sobrenome</ion-label>
+        @if (emEdicao) {
+          <ion-input [(ngModel)]="pessoa.sobrenome"></ion-input>
+        } @else {
+          <p>{{ pessoa.sobrenome }}</p>
+        }
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Idade</ion-label>
+        @if (emEdicao) {
+          <ion-input type="number" [(ngModel)]="pessoa.idade"></ion-input>
+        } @else {
+          <p>{{ pessoa.idade }} anos</p>
+        }
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Telefone</ion-label>
+        @if (emEdicao) {
+          <ion-input [(ngModel)]="pessoa.telefone"></ion-input>
+        } @else {
+          <p>{{ pessoa.telefone }}</p>
+        }
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        @if (emEdicao) {
+          <ion-input [(ngModel)]="pessoa.email"></ion-input>
+        } @else {
+          <p>{{ pessoa.email }}</p>
+        }
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Cidade</ion-label>
+        @if (emEdicao) {
+          <ion-input [(ngModel)]="pessoa.cidade"></ion-input>
+        } @else {
+          <p>{{ pessoa.cidade }}</p>
+        }
+      </ion-item>
+
+    </ion-list>
+
+
+    <div class="ion-padding-top ion-margin-top">
+
+      @if (!emEdicao) {
+        <ion-button class="btmeditar" expand="block" (click)="alternarEdicao()">
+          <ion-icon name="create-outline" slot="start"></ion-icon>
+          Editar Dados
+        </ion-button>
+
+        <ion-button class="btmexcluir" expand="block" (click)="confirmarExclusao()">
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
+          Excluir Pessoa
+        </ion-button>
+      }
+
+      @if (emEdicao) {
+        <ion-button class="btmsalvar" expand="block" (click)="salvar()">
+          <ion-icon name="save-outline" slot="start"></ion-icon>
+          Salvar Alterações
+        </ion-button>
+
+        <ion-button class="btmcancelar" expand="block" (click)="alternarEdicao()">
+          <ion-icon name="close-outline" slot="start"></ion-icon>
+          Cancelar
+        </ion-button>
+      }
+    </div>
+
+  }
+
+  @else {
+    <div style="text-align: center; margin-top: 50px;">
+      <ion-spinner name="crescent" color="primary"></ion-spinner>
+      <p>Carregando informações...</p>
+    </div>
+  }
+
+</ion-content>

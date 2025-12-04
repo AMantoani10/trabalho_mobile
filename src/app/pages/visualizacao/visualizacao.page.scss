@@ -6,3 +6,12 @@
     text-align: center;
     pointer-events: none; /* opcional: evita interferência em clique */
 }
+
+ion-item {
+  --background: #000000;
+
+  &:hover {
+    --background: #5c5858;
+    cursor: pointer;
+  }
+}
